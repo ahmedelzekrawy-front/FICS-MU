@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الرسوم</title>
+    <link rel="icon" type="image/png" href="imges/login.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f8f9fa;
+            color: #565656;
+        }
+
+        /* --- Top Bar --- */
+        .top-bar {
+            direction: rtl;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0; 
+            height: 60px;
+            background-color: #555557;
+            color: #ffffff;
+        }
+
+        .top-bar .center {
+            text-align: center;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .top-bar .left {
+            justify-self: start;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .left img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            background-color: white;
+        }
+
+        .top-bar .right {
+            justify-self: end;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 10px; 
+            gap: 40px;
+        }
+
+        .top-bar .right i {
+            font-size: 18px;
+            cursor: pointer;
+            color: #ffffff;
+            transition: 0.2s;
+        }
+
+        .top-bar .right i:hover {
+            color: #dcdcdc;
+        }
+
+        .top-bar .right .lang {
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 40% 60%;
+            object-fit: cover;
+            margin-left: 10px; 
+        }
+
+        /* --- Layout --- */
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* --- Sidebar (Standardized) --- */
+        aside {
+            width: 240px;
+            background-color: #4b4b4b;
+            color: white;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-section {
+            padding: 20px;
+            text-align: center;
+            background-color: #4b4b4b;
+            border-bottom: 1px solid #5d5d5d;
+        }
+
+        .profile-img-large {
+            width: 90px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            color: #ff6b6b;
+            font-size: 16px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .uni-name {
+            font-size: 12px;
+            margin: 2px 0;
+            color: #ccc;
+        }
+
+        .faculty-name {
+            font-size: 11px;
+            margin: 2px 0;
+            color: #ccc;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-list li {
+            padding: 0;
+            border-bottom: 1px solid #5d5d5d;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .menu-list li:hover {
+            background-color: #7A8B83;
+        }
+
+        .menu-list li.active {
+            background-color: #6d8f82;
+            border-right: 4px solid #4caf50;
+        }
+
+        .menu-list li i.icon-main {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+            color: #ddd;
+        }
+        
+        .menu-text {
+            flex-grow: 1;
+        }
+
+        /* --- Dropdown Menu Styles --- */
+        .submenu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #383838;
+        }
+
+        .submenu.open {
+            display: block;
+        }
+
+        .submenu li {
+            border-bottom: 1px solid #555;
+        }
+
+        .submenu li a {
+            padding-right: 45px;
+            font-size: 12px;
+            color: #d0d0d0;
+        }
+
+        .submenu li:hover {
+            background-color: #555;
+        }
+
+        .submenu li.active-link {
+            background-color: #546e7a; 
+            border-right: 4px solid #81d4fa; 
+        }
+
+        .submenu li.active-link a {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px !important;
+            margin-right: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow.rotate {
+            transform: rotate(-180deg);
+        }
+
+        /* --- Main Content --- */
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        h2 {
+            text-align: right;
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            font-weight: normal;
+            font-size: 22px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
+            padding: 18px 15px; 
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 20px 15px; 
+            border: 1px solid #dee2e6;
+            text-align: center;
+            color: #555;
+            vertical-align: middle;
+            font-size: 15px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* زر الدفع */
+        .pay-btn {
+            background-color: #e2e3e5;
+            color: #383d41;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-block;
+            border: 1px solid #d6d8db;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .pay-btn::after {
+            content: "غير متاح";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .pay-btn:focus {
+            animation: bgChange 2s ease-in-out; 
+            outline: none;
+        }
+
+        .pay-btn:focus::after {
+            animation: textShow 2s ease-in-out;
+        }
+
+        @keyframes bgChange {
+            0%, 80% {
+                background-color: #dc3545; 
+                border-color: #dc3545;
+                color: transparent; 
+                cursor: not-allowed;
+            }
+            100% {
+                background-color: #e2e3e5; 
+                border-color: #d6d8db;
+                color: #383d41;
+            }
+        }
+
+        @keyframes textShow {
+            0%, 80% {
+                opacity: 1; 
+                color: #fff; 
+            }
+            100% {
+                opacity: 0; 
+            }
+        }
+
+        .amount-text {
+            direction: ltr;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="left">
+            <a href="home.html" style="height: 100%; display: flex;">
+                <img class="avatar" src="imges/header_img.png" alt="user">
+            </a>
+        </div>
+
+        <div class="center" id="date-el">
+            </div>
+
+        <div class="right">
+            <span class="lang">En</span>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <i class="fa-solid fa-key"></i>
+            <i class="fa-solid fa-power-off"></i>
+            <img class="logo" src="imges/img1.png" alt="logo">
+        </div>
+    </header>
+
+    <div class="container">
+        <aside>
+            <div class="profile-section">
+                <a href="البيانات الشخصيه.html">
+                     <img src="imges/img1.png" class="profile-img-large" alt="Profile">
+                </a>
+                <div class="student-name">احمد ايمن</div>
+                <div class="uni-name">جامعة المنصورة</div>
+                <div class="faculty-name">أولى - القسم العام - كلية الحاسبات والمعلومات</div>
+            </div>
+
+            <ul class="menu-list">
+                <li>
+                    <a href="البيانات الشخصيه.html">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-regular fa-id-card icon-main"></i> 
+                            <span class="menu-text">البيانات الشخصية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="النتائج الدراسيه.html">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-file-lines icon-main"></i> 
+                            <span class="menu-text">النتائج الدراسية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-syringe icon-main"></i> 
+                            <span class="menu-text">بيانات اللقاح</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-envelope icon-main"></i> 
+                            <span class="menu-text">بريد الجامعة</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li class="active">
+                    <a href="الرسوم.html">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-money-bill icon-main"></i> 
+                            <span class="menu-text">الرسوم</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="التربيه العسكريه.html">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-user-shield icon-main"></i> 
+                            <span class="menu-text">التربية العسكرية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="البطاقه.html">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-id-badge icon-main"></i> 
+                            <span class="menu-text">البطاقات التعريفية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-circle-question icon-main"></i> 
+                            <span class="menu-text">استبيان</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-code-branch icon-main"></i> 
+                            <span class="menu-text">التشعيب</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-list-check icon-main"></i> 
+                            <span class="menu-text">مقررات إختيارية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-image icon-main"></i> 
+                            <span class="menu-text">رفع الصورة الشخصية</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-book-open icon-main"></i> 
+                            <span class="menu-text">مقرراتي</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li id="tables-menu-item">
+                    <a href="javascript:void(0)" onclick="toggleSubmenu()">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-calendar-days icon-main"></i> 
+                            <span class="menu-text">الجداول</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    
+                    <ul class="submenu" id="tables-submenu">
+                        <li><a href="رابط_الجدول_الدراسي.html">الجدول الدراسي</a></li>
+                        <li><a href="رابط_جدول_الامتحانات.html">جدول الامتحانات</a></li>
+                        <li><a href="الاختبارات الاكترونيه.html">الاختبارات الإلكترونية</a></li>
+                    </ul>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-hospital icon-main"></i> 
+                            <span class="menu-text">مستشفى الطلبة</span>
+                        </div>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="#">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fa-solid fa-ellipsis icon-main"></i> 
+                            <span class="menu-text">خدمات ...</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main>
+            <h2>الرسوم</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>تاريخ الإذن</th>
+                            <th>رقم الإذن</th>
+                            <th>تاريخ الإيصال</th>
+                            <th>رقم الإيصال</th>
+                            <th>القيمة</th>
+                            <th>السنة</th>
+                            <th>الرسوم</th>
+                            <th>القيمة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15/12/2025</td>
+                            <td>11071122</td>
+                            <td>15/12/2025</td>
+                            <td>522406007158</td>
+                            <td>2739.00 (ألفين و سبعمائة و تسعة و ثلاثون جليهاً )</td>
+                            <td>أولى (2025 - 2026)</td>
+                            <td>رسم قيد</td>
+                            <td><span class="amount-text">1539.00</span> جنيه مصري</td>
+                        </tr>
+
+                        <tr>
+                            <td>22/07/2025</td>
+                            <td>10539720</td>
+                            <td></td>
+                            <td><a href="#" class="pay-btn">دفع إلكتروني</a></td>
+                            <td>100.00 ( مائة جليهاً )</td>
+                            <td>أولى (2025 - 2026)</td>
+                            <td>رسم امتحان</td>
+                            <td><span class="amount-text">1200.00</span> جنيه مصري</td>
+                        </tr>
+
+                        <tr>
+                            <td>13/03/2025</td>
+                            <td>10462184</td>
+                            <td>13/03/2025</td>
+                            <td>507208000522</td>
+                            <td>127.00 ( مائة و سبعة و عشرون جليهاً )</td>
+                            <td>أولى (2024 - 2025)</td>
+                            <td>رسم إعادة امتحان التربية العسكرية</td>
+                            <td><span class="amount-text">100.00</span> جنيه مصري</td>
+                        </tr>
+
+                        <tr>
+                            <td>31/12/2024</td>
+                            <td>10386995</td>
+                            <td></td>
+                            <td><a href="#" class="pay-btn">دفع إلكتروني</a></td>
+                            <td>100.00 ( مائة جليهاً )</td>
+                            <td>أولى (2024 - 2025)</td>
+                            <td>اللتماس إعادة رصد درجات المقرر</td>
+                            <td><span class="amount-text">127.00</span> جنيه مصري</td>
+                        </tr>
+
+                        <tr>
+                            <td>17/09/2024</td>
+                            <td>9943632</td>
+                            <td>17/09/2024</td>
+                            <td>20027</td>
+                            <td>1562.00 (ألف و خمسمائة و اثنا و ستون جليهاً )</td>
+                            <td>أولى (2024 - 2025)</td>
+                            <td>رسم إعادة امتحان التربية العسكرية</td>
+                            <td><span class="amount-text">100.00</span> جنيه مصري</td>
+                        </tr>
+                         <tr>
+                            <td>17/09/2024</td>
+                            <td>9943632</td>
+                            <td>17/09/2024</td>
+                            <td>20027</td>
+                            <td>1562.00 (ألف و خمسمائة و اثنا و ستون جليهاً )</td>
+                            <td>أولى (2024 - 2025)</td>
+                            <td>رسم قيد</td>
+                            <td><span class="amount-text">1562.00</span> جنيه مصري</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function updateDate() {
+            const dateElement = document.getElementById('date-el');
+            const now = new Date();
+            const options = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('ar-EG-u-nu-latn', options);
+            if(dateElement) dateElement.textContent = formattedDate;
+        }
+        updateDate();
+
+        // وظيفة القائمة المنسدلة
+        function toggleSubmenu() {
+            const submenu = document.getElementById('tables-submenu');
+            const arrow = document.querySelector('#tables-menu-item .dropdown-arrow');
+            
+            if (submenu.classList.contains('open')) {
+                submenu.classList.remove('open');
+                arrow.classList.remove('rotate');
+            } else {
+                submenu.classList.add('open');
+                arrow.classList.add('rotate');
+            }
+        }
+    </script>
+</body>
+</html>

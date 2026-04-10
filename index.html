@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyU - بوابة الخدمات الطلابية</title>
+    <link rel="icon" type="image/png" href="imges/login.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('imges/00.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير تعتيم الأطراف (Vignette) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+            z-index: 1;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 2;
+            background: rgb(60, 60, 60); 
+            width: 340px; 
+            padding: 40px 25px; 
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            color: #fff;
+        }
+
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        
+        .logo-container img {
+            max-width: 120px;
+            background: transparent; 
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 25px; 
+            font-weight: 400;
+        }
+
+        .input-group {
+            display: flex;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .input-icon {
+            background: #999;
+            width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .form-control {
+            border: none;
+            flex: 1;
+            padding: 0 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            /* لون النص: أسود رمادي فاتح قليلاً */
+            color: #444444; 
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            accent-color: #555;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: #6c757d;
+            border: none;
+            height: 45px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-login:hover {
+            background: #5a6268;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #ccc;
+        }
+
+        .links-row a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .links-row a:hover {
+            color: #fff;
+        }
+
+        .privacy-link {
+            display: block;
+            margin-top: 20px;
+            color: #e74c3c;
+            font-size: 13px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px; 
+            font-size: 14px;
+            color: #ccc;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 10px;
+        }
+        
+        .card-footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .page-copyright {
+            position: absolute;
+            bottom: 20px;
+            z-index: 2;
+            color: #ccc;
+            font-size: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="logo-container">
+            <img src="imges/login.png" alt="MyU Logo">
+        </div>
+
+        <h1>بوابة الخدمات الطلابية</h1>
+        <h2>نظام ابن الهيثم - جامعة المنصورة</h2>
+
+        <form>
+            <div class="input-group">
+                <div class="input-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <input type="text" id="username" class="form-control" placeholder="اسم المستخدم">
+            </div>
+
+            <div class="input-group">
+                <div class="input-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <input type="password" id="password" class="form-control" placeholder="كلمة المرور">
+            </div>
+
+            <div class="remember-me">
+                <label for="remember">تذكرني</label>
+                <input type="checkbox" id="remember">
+            </div>
+
+            <button type="button" class="btn-login" onclick="login()">
+                <i class="fa-solid fa-key"></i>
+            </button>
+
+            <div class="links-row">
+                <a href="#">تسجيل</a>
+                <a href="#">نسيت كلمة المرور</a>
+            </div>
+
+            <a href="#" class="privacy-link">
+                <span>سياسة خصوصية وتأمين البيانات</span>
+                <i class="fa-solid fa-shield-halved"></i>
+            </a>
+
+            <div class="card-footer">
+                <a href="#">مساعدة</a>
+                <a href="#">English</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="page-copyright">
+        جميع الحقوق محفوظة © شركة إنطلاق لتقنية الإتصالات والمعلومات
+        <br>
+        2020
+    </div>
+
+    <script>
+        function login() {
+            var user = document.getElementById('username').value;
+            var pass = document.getElementById('password').value;
+
+            var correctUser = "30604308801052";
+            var correctPass = "Ahmed2006$";
+
+            if(user === correctUser && pass === correctPass) {
+                window.location.href = "home.html";
+            } else {
+                alert("بيانات الدخول غير صحيحة! يرجى التأكد من اسم المستخدم وكلمة المرور.");
+            }
+        }
+    </script>
+
+</body>
+</html>

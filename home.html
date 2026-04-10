@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الخدمات الطلابية</title>
+<link rel="icon" type="image/png" href="imges/login.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="left">
+            <img class="avatar" src="imges/header_img.png" alt="user">
+        </div>
+
+        <div class="center" id="date-el">
+        </div>
+
+        <div class="right">
+            <span class="lang">En</span>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <i class="fa-solid fa-key"></i>
+            <a href="index.html" style="text-decoration: none;">
+                <i class="fa-solid fa-power-off"></i>
+            </a>
+            <img class="logo" src="imges/img1.png" alt="logo">
+        </div>
+    </header>
+
+    <section class="dashboard">
+
+        <a href="البيانات الشخصيه.html" class="card">
+            <i class="fa-solid fa-id-card"></i>
+            <span>البيانات الشخصية</span>
+        </a>
+
+        <a href="النتائج الدراسيه.html" class="card">
+            <i class="fa-solid fa-list"></i>
+            <span>النتائج الدراسية</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-syringe"></i>
+            <span>بيانات اللقاح</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-at"></i>
+            <span>بريد الجامعة</span>
+        </a>
+
+        <a href="الرسوم.html" class="card">
+            <i class="fa-solid fa-money-bill"></i>
+            <span>الرسوم</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>التربية العسكرية</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-address-card"></i>
+            <span>البطاقات التعريفية</span>
+        </a>
+
+        <a href="https://farabi.mans.edu.eg/SY" class="card">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>استبيان</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-arrow-down-short-wide"></i>
+            <span>التشعيب</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-list-check"></i>
+            <span>مقررات اختيارية</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-image"></i>
+            <span>رفع الصورة الشخصية</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-book-open"></i>
+            <span>مقرراتي</span>
+        </a>
+
+        <a href="#" class="card" onclick="openScheduleModal(event)">
+            <i class="fa-solid fa-calendar"></i>
+            <span>الجداول</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-kit-medical"></i>
+            <span>مستشفى الطلبة</span>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-ellipsis"></i>
+            <span>خدمات</span>
+        </a>
+
+    </section>
+
+    <a href="#" class="floating-btn">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content custom-schedule-content">
+            <div class="schedule-header">
+                <h2>الجداول</h2>
+                </div>
+            
+            <div class="schedule-options">
+                <a href="#" class="schedule-box">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>الجدول الدراسى</span>
+                </a>
+
+                <a href="#" class="schedule-box">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>جدول الإمتحانات</span>
+                </a>
+
+                <a href="الاختبارات الاكترونيه.html" class="schedule-box">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>الاختبارات الإلكترونية</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateDate() {
+            const dateElement = document.getElementById('date-el');
+            const now = new Date();
+            const options = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('ar-EG-u-nu-latn', options);
+            if(dateElement) dateElement.textContent = formattedDate;
+        }
+        updateDate();
+
+        function openScheduleModal(e) {
+            e.preventDefault();
+            document.getElementById("scheduleModal").style.display = "block";
+        }
+
+        // إغلاق النافذة عند الضغط في أي مكان خارجها
+        window.onclick = function(event) {
+            var modal = document.getElementById("scheduleModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

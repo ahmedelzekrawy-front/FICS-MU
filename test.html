@@ -1,0 +1,104 @@
+<<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>بوابة الخدمات الطلابية</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+    <style>
+        
+        .top-bar {
+            direction: rtl;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0; 
+            height: 60px;
+            background-color: #555557;
+            color: #ffffff;
+        }
+
+        .top-bar .center {
+            text-align: center;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .top-bar .left {
+            justify-self: start;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .left img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            background-color: white;
+        }
+
+        .top-bar .right {
+            justify-self: end;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 10px; 
+            gap: 40px;
+        }
+
+        .top-bar .right i {
+            font-size: 18px;
+            cursor: pointer;
+            color: #ffffff;
+            transition: 0.2s;
+        }
+
+        .top-bar .right i:hover {
+            color: #dcdcdc;
+        }
+
+        .top-bar .right .lang {
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 10px; 
+        }
+
+       
+
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+    <div class="left">
+        <img class="avatar" src="imges/header_img.png" alt="user">
+    </div>
+
+    <div class="center">
+        الأحد 01 فبراير 2026
+    </div>
+
+    <div class="right">
+        <span class="lang">En</span>
+        <i class="fa-solid fa-cloud-sun"></i>
+        <i class="fa-solid fa-key"></i>
+        <i class="fa-solid fa-power-off"></i>
+        <img class="logo" src="imges/img1.png" alt="logo">
+    </div>
+</header>
+</body>
+</html>
